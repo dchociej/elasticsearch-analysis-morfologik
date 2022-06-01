@@ -81,6 +81,28 @@ class MorfologikPluginIntegrationTest extends Specification {
         "s"  | "polish-wo-brev.dict" | "s"
     }
 
+    def "docusafe morfologik analyzer - remove polish letters should work"() {
+        given:
+        def request = [
+                "analyzer": AnalysisMorfologikPlugin.ANALYZER_NAME,
+                "text"    : "swietojanski"
+        ]
+
+        expect:
+        analyzeAndGetTokensResult(request) == "swietojanski"
+    }
+
+    def "lowercase should work"() {
+        given:
+        def request = [
+                "analyzer": AnalysisMorfologikPlugin.ANALYZER_NAME,
+                "text"    : "AbCdEfGh"
+        ]
+
+        expect:
+        analyzeAndGetTokensResult(request) == "abcdefgh"
+    }
+
     private String analyzeAndGetTokensResult(Map<String, Object> analyzeRequest) {
         def response = sendAnalyzeRequest(container.httpHostAddress, toJson(analyzeRequest))
         response.result.tokens.collect { it.token }.join(" ")

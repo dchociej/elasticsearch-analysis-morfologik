@@ -1,6 +1,6 @@
 package pl.allegro.tech.elasticsearch.index.analysis.pl;
 
-import org.apache.lucene.analysis.morfologik.MorfologikAnalyzer;
+import pl.compan.docusafe.MorfologikAnalyzer;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.index.IndexSettings;
 import org.elasticsearch.index.analysis.AbstractIndexAnalyzerProvider;
